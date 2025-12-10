@@ -35,7 +35,7 @@ new p5((p) => {
       const y =
         p.noise(i * 200 + p.frameCount * 0.004) * drawHeight;
 
-      p.fill(251, 0, 0);
+      p.fill(3, 2, 252);
       p.circle(x, y, 120);
     }
 
