@@ -29,7 +29,7 @@ import {
 // IMPORT P5 VISUAL LAYER
 // ------------------------------------
 
-import { updateVisuals } from "./visual/p5Sketch.js";
+import { updateVisuals } from "./visual/p5sketch.js";
 
 
 // ------------------------------------
