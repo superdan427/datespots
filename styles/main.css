@@ -163,7 +163,7 @@ canvas {
 .custom-marker {
   width: 10px;
   height: 10px;
-  background: #111;
+  background: #0303fc;
   border-radius: 50%;
   opacity: 0.8;
   cursor: pointer;
