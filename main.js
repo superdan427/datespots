@@ -1,59 +1,74 @@
-// -------------------------------
-// IMPORTS
-// -------------------------------
+// ------------------------------------
+// IMPORT DATA
+// ------------------------------------
 
 import { dateSpots } from "./data/dateSpots.js";
+
+
+// ------------------------------------
+// IMPORT UI MODULES
+// ------------------------------------
+
 import { renderList, renderFilters } from "./ui/list.js";
+import { openModal, setupModalClose } from "./ui/modal.js";
+
+
+// ------------------------------------
+// IMPORT MAP MODULES
+// ------------------------------------
+
 import {
   createMap,
   addMarkers,
   removeMarkers,
   flyToSpot
 } from "./map/map.js";
-import { openModal, setupModalClose } from "./ui/modal.js";
+
+
+// ------------------------------------
+// IMPORT P5 VISUAL LAYER
+// ------------------------------------
+
 import { updateVisuals } from "./visual/p5Sketch.js";
 
 
-
-// -------------------------------
+// ------------------------------------
 // INITIALISE CORE SYSTEMS
-// -------------------------------
+// ------------------------------------
 
-// Create the map
+// Create Mapbox map
 const map = createMap("map");
 
-// Set up modal close behaviour
+// Enable modal close behaviour
 setupModalClose();
 
 
-
-// -------------------------------
+// ------------------------------------
 // DERIVED DATA
-// -------------------------------
+// ------------------------------------
 
-// Unique categories for filters
+// Extract unique categories for filters
 const categories = ["all", ...new Set(dateSpots.map((s) => s.category))];
 
-// Keep track of markers currently on the map
+// Keep reference to current map markers
 let currentMarkers = [];
 
 
-
-// -------------------------------
-// CORE UI UPDATE FUNCTION
-// -------------------------------
+// ------------------------------------
+// MAIN UI UPDATE PIPELINE
+// ------------------------------------
 
 function updateUI(spots) {
-  // Render the list and wire list clicks
+  // Render list and handle list item clicks
   renderList("list-items", spots, (spot) => {
     flyToSpot(map, spot);
     openModal(spot);
   });
 
-  // Clean up old markers
+  // Remove existing markers
   removeMarkers(currentMarkers);
 
-  // Add new markers and wire marker clicks
+  // Add markers and handle marker clicks
   currentMarkers = addMarkers(map, spots, (spot) => {
     flyToSpot(map, spot);
     openModal(spot);
@@ -64,25 +79,23 @@ function updateUI(spots) {
 }
 
 
-
-// -------------------------------
+// ------------------------------------
 // FILTER CONTROLS
-// -------------------------------
+// ------------------------------------
 
 renderFilters("filters", categories, (category) => {
-  const filtered =
+  const filteredSpots =
     category === "all"
       ? dateSpots
       : dateSpots.filter((spot) => spot.category === category);
 
-  updateUI(filtered);
+  updateUI(filteredSpots);
 });
 
 
-
-// -------------------------------
+// ------------------------------------
 // INITIAL LOAD
-// -------------------------------
+// ------------------------------------
 
-// Show all spots on first load
+// Render everything on first load
 updateUI(dateSpots);
