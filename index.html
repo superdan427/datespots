@@ -2,29 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Date Spots</title>
+    <title>superdan427’s date spots</title>
 
-    <!-- Mapbox JS + CSS -->
+    <!-- Mapbox JS -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+    <!-- Mapbox CSS -->
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css"
       rel="stylesheet"
     />
 
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/src/styles/main.css" />
+    <!-- App CSS (RELATIVE PATH ✅) -->
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
 
   <body>
-    <!-- Modal (MUST be inside body) -->
+    <!-- Modal -->
     <div id="modal" class="modal hidden">
       <div class="modal-content">
         <button id="modal-close">×</button>
         <div id="modal-body"></div>
       </div>
     </div>
-<!-- Page Title -->
-<h1 id="page-title">DANIELS DATE SPOTS</h1>
+
+    <!-- Page Title -->
+    <h1 id="page-title">superdan427’s date spots</h1>
 
     <!-- Sidebar -->
     <div id="list">
@@ -33,13 +36,13 @@
     </div>
 
     <!-- Map -->
-<!-- Map -->
-<div id="map"></div>
+    <div id="map"></div>
 
-<!-- p5.js -->
-<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <!-- p5 (visual layer only) -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 
-<!-- Main JS entry -->
-<script type="module" src="/src/main.js"></script>
-
+    <!-- Main app entry (RELATIVE PATH ✅) -->
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>
+
